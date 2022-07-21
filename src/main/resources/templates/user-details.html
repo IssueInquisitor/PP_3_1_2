@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User page</title>`
+</head>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<body>
+<h1>User page</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th th:text="${user.getId()}"></th>
+    </tr>
+    <tr>
+        <th>First Name</th>
+        <th th:text="${user.getFirstname()}"></th>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <th th:text="${user.getLastname()}"></th>
+    </tr>
+    <tr>
+        <th>Age</th>
+        <th th:text="${user.getAge()}"></th>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <th th:text="${user.getEmail()}"></th>
+    </tr>
+    <tr>
+        <th>Username</th>
+        <th th:text="${user.getUsername()}"></th>
+    </tr>
+
+    <tr>
+        <th>Password</th>
+        <th th:text="${user.getPassword()}"></th>
+    </tr>
+
+</table>
+</body>
+<br><br>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <form th:method="GET" th:action="@{/admin/user-update/{id}/(id=${user.getId()})}">
+        <input type="submit" value="Edit">
+    </form>
+    <br>
+    <form th:method="DELETE" th:action="@{/admin/user-delete/{id}(id=${user.getId()})}">
+        <input type="submit" value="Delete">
+    </form>
+    <br>
+    <form th:method="GET" th:action="@{/logout}">
+        <input type="submit" value="Log Out">
+    </form>
+</div>
+</html>

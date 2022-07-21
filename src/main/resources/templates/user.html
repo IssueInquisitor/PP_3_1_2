@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>User page</title>
+</head>
+<body style="text-align: center">
+<h1>Welcome spring boot security user page!</h1>
+<div>
+    <table th:class="table-header" style="border-collapse: collapse;display: inline-block">
+        <thead>
+        <tr>
+            <th style="border: 2px solid black" scope="col">ID</th>
+            <th style="border: 2px solid black" scope="col">First Name</th>
+            <th style="border: 2px solid black" scope="col">Last Name</th>
+            <th style="border: 2px solid black" scope="col">Age</th>
+            <th style="border: 2px solid black" scope="col">Email</th>
+            <th style="border: 2px solid black" scope="col">Username</th>
+        </tr>
+        </thead>
+
+        <tr th:each="u:${user}">
+            <td style="border: 2px solid black" th:text="${user.id}"></td>
+            <td style="border: 2px solid black" th:text="${user.firstname}"></td>
+            <td style="border: 2px solid black" th:text="${user.lastname}"></td>
+            <td style="border: 2px solid black" th:text="${user.age}"></td>
+            <td style="border: 2px solid black" th:text="${user.email}"></td>
+            <td style="border: 2px solid black" th:text="${user.username}"></td>
+        </tr>
+    </table>
+    <br><br>
+    <form th:action="@{/logout}">
+        <input type="submit" value="Log Out">
+    </form>
+</div>
+
+</body>
+</html>

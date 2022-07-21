@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body style="text-align: center">
+<h1 style="color: lightcoral">All users</h1>
+<br>
+<table style="text-align: center; border-collapse: collapse;
+     display: inline-block" class="table-header">
+    <thead>
+    <tr>
+        <th style="border: 2px solid black" scope="col">ID</th>
+        <th style="border: 2px solid black" scope="col">First Name</th>
+        <th style="border: 2px solid black" scope="col">Last Name</th>
+        <th style="border: 2px solid black" scope="col">Age</th>
+        <th style="border:2px solid black" scope="col">Email</th>
+        <th style="border:2px solid black" scope="col">Username</th>
+        <th style="border:2px solid black" scope="col">Password</th>
+        <th style="border:2px solid black" scope="col">Operations</th>
+    </thead>
+
+
+    <tr th:each="user : ${userList}">
+        <td style="border:2px solid black" th:text="${user.id}"/>
+        <td style="border:2px solid black" th:text="${user.firstname}"/>
+        <td style="border:2px solid black" th:text="${user.lastname}"/>
+        <td style="border:2px solid black" th:text="${user.age}"/>
+        <td style="border:2px solid black" th:text="${user.email}"/>
+        <td style="border:2px solid black" th:text="${user.username}"/>
+        <td style="border:2px solid black" th:text="${user.password}"/>
+        <td style="border:2px solid black">
+            <form th:method="GET" th:action="@{/admin/user-details/{id}(id=${user.getId()})}">
+                <input type="submit" value="Details"/>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<br><br>
+<form th:method="GET" th:action="@{/admin/user-create}">
+    <input type="submit" value="Add user">
+</form>
+<br>
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="Log Out">
+</form>
+</body>
+</html>
